@@ -1,0 +1,17 @@
+{
+    "name": "sistema-bluemund",
+    "version": "1.0.0",
+    "description": "Sistema de Estoque para BlueMund",
+    "main": "server.js",
+    "scripts": {
+      "start": "node backend/server.js"
+    },
+    "author": "Lucas Matheus",
+    "license": "ISC",
+    "dependencies": {
+      "express": "^4.17.1",
+      "sqlite3": "^5.0.0",
+      "body-parser": "^1.19.0",
+      "cors": "^2.8.5"
+    }
+  }

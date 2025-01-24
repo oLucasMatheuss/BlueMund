@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Estoque</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+    <header class="sidebar">
+        <img class="imagem" src="imagens/logo-transparente.png" alt="Logo">
+        <h1 class="sidebar-title">Sistema de Estoque</h1>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showSection('estoque')">Estoque</a></li>
+                <li><a href="#" onclick="showSection('caixa')">Caixa</a></li>
+                <li><a href="#" onclick="showSection('relatorios')">Relatórios</a></li>
+            </ul>
+        </nav>
+        <button class="toggle-btn" onclick="toggleSidebar()">&#9664;</button>
+    </header>
+    <main class="content">
+        <section id="estoque-section" class="section">
+            <section class="form-section">
+                <h2>Adicionar Produto</h2>
+                <button onclick="openForm('add')">Adicionar Novo Produto</button>
+            </section>
+            <section class="stats">
+                <h2>Estatísticas do Estoque</h2>
+                <div id="estoque-stats"></div>
+            </section>
+            <section class="alerts">
+                <h2>Alertas de Estoque</h2>
+                <div id="alertas-estoque"></div>
+            </section>
+            <section class="produtos">
+                <h2>Produtos</h2>
+                <div id="lista-produtos"></div>
+            </section>
+        </section>
+        
+        <section id="caixa-section" class="section hidden" style="margin-left: 50px;">
+            <h2>Sistema de Caixa</h2>
+            <button onclick="openCaixaPopup()">Iniciar Caixa</button>
+           
+            <form id="caixa-form">
+                <label for="codigo">Código do Produto:</label>
+                <input type="text" id="caixa-codigo" name="codigo" required>
+                <label for="quantidade">Quantidade:</label>
+                <input type="number" id="caixa-quantidade" name="quantidade" required>
+                <label for="desconto">Desconto (%):</label>
+                <input type="number" id="caixa-desconto" name="desconto" step="0.01" min="0" max="100">
+                <button type="submit">Adicionar ao Carrinho</button>
+            </form>
+            <div id="carrinho">
+                <h3>Carrinho de Compras</h3>
+                <ul id="carrinho-lista"></ul>
+                <p>Total: R$<span id="carrinho-total">0.00</span></p>
+                <button onclick="finalizarVenda()">Finalizar Venda</button>
+            </div>
+            <section class="caixa-info">
+                <h3>Informações do Caixa</h3>
+                <p>Valor Inicial: R$<span id="caixa-valor-inicial">0.00</span></p>
+                <p>Valor Final: R$<span id="caixa-valor-final">0.00</span></p>
+                <p>Número de Vendas: <span id="caixa-numero-vendas">0</span></p>
+            </section>
+            
+        </section>
+
+        <section id="relatorios-section" class="section hidden" style="margin-left: 50px;">
+            <h2>Relatórios</h2>
+            <button onclick="gerarRelatorio('estoque')">Relatório de Estoque</button>
+            <button onclick="gerarRelatorio('vendas')">Relatório de Vendas</button>
+            <div id="relatorio-output"></div>
+        </section>
+    </main>
+
+    <div class="overlay" id="overlay" onclick="closeForm()"></div>
+
+    <div class="form-popup" id="form-popup">
+        <h2 id="popup-title">Adicionar Produto</h2>
+        <form id="produto-form">
+            <label for="codigo">Código:</label>
+            <input type="text" id="codigo" name="codigo" required>
+            <label for="descricao">Descrição:</label>
+            <input type="text" id="descricao" name="descricao" required>
+            <label for="quantidade">Quantidade:</label>
+            <input type="number" id="quantidade" name="quantidade" required>
+            <label for="estoque_minimo">Estoque Mínimo:</label>
+            <input type="number" id="estoque_minimo" name="estoque_minimo" required>
+            <label for="valor_unitario">Valor Unitário:</label>
+            <input type="number" step="0.01" id="valor_unitario" name="valor_unitario" required>
+            <button type="submit" id="submit-btn">Adicionar Produto</button>
+            <button type="button" class="close-btn" onclick="closeForm()">Cancelar</button>
+        </form>
+    </div>
+
+    <!-- Caixa Popup -->
+    <div class="form-popup" id="caixa-popup">
+        <h2>Iniciar Caixa</h2>
+        <form id="caixa-inicial-form">
+            <label for="caixa-inicial">Valor Inicial do Caixa:</label>
+            <input type="number" id="caixa-inicial" name="caixa-inicial" required>
+            <button type="submit">Salvar</button>
+            <button type="button" class="close-btn" onclick="closeCaixaPopup()">Cancelar</button>
+        </form>
+    </div>
+</body>
+</html>
